@@ -3,8 +3,7 @@
 Trader::Trader() : tdapi(nullptr), bIsReady(false)
 {
     //loadBrokerInfo("./broker/simnow.txt", bi);
-    //loadBrokerInfo("./broker/simnow_24.txt", bi);
-    loadBrokerInfo("./broker/mk.txt", bi);
+    loadBrokerInfo("./broker/simnow_24.txt", bi);
     
     createFolder(pTradeFlowPath);
 
@@ -18,7 +17,7 @@ Trader::Trader() : tdapi(nullptr), bIsReady(false)
 
 Trader::~Trader() {}
 
-///¿Í»§¶ËÈÏÖ¤ÇëÇó
+///å®¢æˆ·ç«¯è®¤è¯è¯·æ±‚
 void Trader::reqAuthenticate()
 {
     CThostFtdcReqAuthenticateField t{};
@@ -30,7 +29,7 @@ void Trader::reqAuthenticate()
     tdapi->ReqAuthenticate(&t, ++nReqID);
 }
 
-///ÓÃ»§µÇÂ¼ÇëÇó
+///ç”¨æˆ·ç™»å½•è¯·æ±‚
 void Trader::reqUserLogin()
 {
     CThostFtdcReqUserLoginField t{};
@@ -41,7 +40,7 @@ void Trader::reqUserLogin()
     tdapi->ReqUserLogin(&t, ++nReqID);
 }
 
-///ÇëÇó²éÑ¯ºÏÔ¼
+///è¯·æ±‚æŸ¥è¯¢åˆçº¦
 void Trader::reqQryInstrument()
 {
     CThostFtdcQryInstrumentField t{};
@@ -50,26 +49,26 @@ void Trader::reqQryInstrument()
 }
 
 
-///µ±¿Í»§¶ËÓë½»Ò×ºóÌ¨½¨Á¢ÆðÍ¨ÐÅÁ¬½ÓÊ±(»¹Î´µÇÂ¼Ç°)£¬¸Ã·½·¨±»µ÷ÓÃ¡£
+///å½“å®¢æˆ·ç«¯ä¸Žäº¤æ˜“åŽå°å»ºç«‹èµ·é€šä¿¡è¿žæŽ¥æ—¶(è¿˜æœªç™»å½•å‰)ï¼Œè¯¥æ–¹æ³•è¢«è°ƒç”¨ã€‚
 void Trader::OnFrontConnected()
 {
     reqAuthenticate();
 }
 
-///µ±¿Í»§¶ËÓë½»Ò×ºóÌ¨Í¨ÐÅÁ¬½Ó¶Ï¿ªÊ±£¬¸Ã·½·¨±»µ÷ÓÃ¡£µ±·¢ÉúÕâ¸öÇé¿öºó£¬API»á×Ô¶¯ÖØÐÂÁ¬½Ó£¬¿Í»§¶Ë¿É²»×ö´¦Àí¡£
-///@param nReason ´íÎóÔ­Òò
-///        0x1001 ÍøÂç¶ÁÊ§°Ü
-///        0x1002 ÍøÂçÐ´Ê§°Ü
-///        0x2001 ½ÓÊÕÐÄÌø³¬Ê±
-///        0x2002 ·¢ËÍÐÄÌøÊ§°Ü
-///        0x2003 ÊÕµ½´íÎó±¨ÎÄ
+///å½“å®¢æˆ·ç«¯ä¸Žäº¤æ˜“åŽå°é€šä¿¡è¿žæŽ¥æ–­å¼€æ—¶ï¼Œè¯¥æ–¹æ³•è¢«è°ƒç”¨ã€‚å½“å‘ç”Ÿè¿™ä¸ªæƒ…å†µåŽï¼ŒAPIä¼šè‡ªåŠ¨é‡æ–°è¿žæŽ¥ï¼Œå®¢æˆ·ç«¯å¯ä¸åšå¤„ç†ã€‚
+///@param nReason é”™è¯¯åŽŸå› 
+///        0x1001 ç½‘ç»œè¯»å¤±è´¥
+///        0x1002 ç½‘ç»œå†™å¤±è´¥
+///        0x2001 æŽ¥æ”¶å¿ƒè·³è¶…æ—¶
+///        0x2002 å‘é€å¿ƒè·³å¤±è´¥
+///        0x2003 æ”¶åˆ°é”™è¯¯æŠ¥æ–‡
 void Trader::OnFrontDisconnected(int nReason)
 {
     printf("Trade Front Disconnected\n");
     printf("nReason = %d %s\n", nReason, nReason2str(nReason));
 }
 
-///¿Í»§¶ËÈÏÖ¤ÏìÓ¦
+///å®¢æˆ·ç«¯è®¤è¯å“åº”
 void Trader::OnRspAuthenticate(CThostFtdcRspAuthenticateField* pRspAuthenticateField, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     if (pRspInfo != nullptr && pRspInfo->ErrorID != 0)
@@ -82,7 +81,7 @@ void Trader::OnRspAuthenticate(CThostFtdcRspAuthenticateField* pRspAuthenticateF
     reqUserLogin();
 }
 
-///µÇÂ¼ÇëÇóÏìÓ¦
+///ç™»å½•è¯·æ±‚å“åº”
 void Trader::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     if (pRspInfo != nullptr && pRspInfo->ErrorID != 0)
@@ -95,7 +94,7 @@ void Trader::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CThostFt
     reqQryInstrument();
 }
 
-///ÇëÇó²éÑ¯ºÏÔ¼ÏìÓ¦
+///è¯·æ±‚æŸ¥è¯¢åˆçº¦å“åº”
 void Trader::OnRspQryInstrument(CThostFtdcInstrumentField* pInstrument, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     if (pRspInfo != nullptr && pRspInfo->ErrorID != 0)
@@ -111,7 +110,6 @@ void Trader::OnRspQryInstrument(CThostFtdcInstrumentField* pInstrument, CThostFt
 
     if (bIsLast)
     {
-        send2WeCom("Qry Instrument Done");
         bIsReady.store(true, std::memory_order_release);
     }
 }

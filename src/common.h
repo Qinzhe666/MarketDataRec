@@ -28,7 +28,7 @@ struct BrokerInfo
 	char MarketFront[32];
 	char BrokerID[16];
 	char UserID[16];
-	char Password[16];
+	char Password[32];
 	char AuthCode[32];
 	char AppID[32];
 };
@@ -114,17 +114,6 @@ inline const char* nReason2str(int nReason)
 	}
 }
 
-inline void send2WeCom(const char* text)
-{
-	char command[512];
-#ifdef _WIN32
-	sprintf(command, "curl \"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6ef63fbe-ff08-4099-9a2c-4433c464a035\" -H \"Content-Type: application/json\" -d \"{\\\"msgtype\\\": \\\"text\\\",\\\"text\\\": {\\\"content\\\": \\\"Win %s\\\"}}\"", text);
-#else
-	sprintf(command, "curl \'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6ef63fbe-ff08-4099-9a2c-4433c464a035\' -H \'Content-Type: application/json\' -d \'{\"msgtype\": \"text\",\"text\": {\"content\": \"%s\"}}\'", text);
-#endif
-	system(command);
-}
-
 inline void overnight(const char* day)
 {
 	long long sleeptime = 0;
@@ -144,7 +133,6 @@ inline void overnight(const char* day)
 		{
 			sleeptime = mktime(&end) - begin;
 		}
-		send2WeCom("sleep");
 		std::this_thread::sleep_for(std::chrono::seconds(sleeptime));
 	}
 	else if (t->tm_hour < 20 && t->tm_hour > 14)
@@ -154,7 +142,6 @@ inline void overnight(const char* day)
 		sprintf(command, "tar -czvf %s.tar.gz %s && bypy upload %s.tar.gz && rm %s -rf", day, day, day, day);
 		system(command);
 #endif // _WIN32
-		send2WeCom("restart");
 		system("shutdown -r");
 	}
 }

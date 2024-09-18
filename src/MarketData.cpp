@@ -5,10 +5,7 @@ MarketData::MarketData(std::vector<std::string>& inst) : mdapi(nullptr), inst_ve
 {
     createFolder(pMdFlowPath);
     //loadBrokerInfo("./broker/simnow.txt", bi);
-    //loadBrokerInfo("./broker/simnow_24.txt", bi);
-    //loadBrokerInfo("./broker/mk.txt", bi);
-    loadBrokerInfo("./broker/mk_5.txt", bi);
-    //loadBrokerInfo("./broker/5.txt", bi);
+    loadBrokerInfo("./broker/simnow_24.txt", bi);
 
     mdapi = CThostFtdcMdApi::CreateFtdcMdApi(pMdFlowPath, true, true);
     mdapi->RegisterSpi(this);
@@ -23,7 +20,6 @@ MarketData::~MarketData() {}
 void MarketData::OnFrontConnected()
 {
     printf("Market Front Connected\n");
-    send2WeCom("Market Front Connected");
 
     CThostFtdcReqUserLoginField t{};
     strcpy(t.BrokerID, bi.BrokerID);
@@ -43,7 +39,6 @@ void MarketData::OnFrontConnected()
 void MarketData::OnFrontDisconnected(int nReason)
 {
     printf("Market Front Disconnected\n");
-    send2WeCom("Market Front Disconnected");
     printf("nReason = %d Reason = %s\n", nReason, nReason2str(nReason));
 
     overnight(mdapi->GetTradingDay());

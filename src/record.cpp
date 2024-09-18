@@ -29,44 +29,44 @@ void record::start()
             char fileName[64] = { '\0' };
             sprintf(fileName, "./%s/%s_%s.csv", day, t.InstrumentID, day);
             std::ofstream outFile;
-            outFile.open(fileName, std::ios::app); // ÎÄ¼þ×·¼ÓÐ´Èë
-            outFile << t.InstrumentID << ","///½»Ò×Ëù´úÂë
-                << t.ExchangeID << ","///ºÏÔ¼´úÂë
-                << t.TradingDay << ","///½»Ò×ÈÕ
-                << t.UpdateTime << ","///×îºóÐÞ¸ÄÊ±¼ä
-                << t.UpdateMillisec << ","///×îºóÐÞ¸ÄºÁÃë
-                << t.PreSettlementPrice << ","///ÉÏ´Î½áËã¼Û
-                << t.PreClosePrice << ","///×òÊÕÅÌ
-                << t.PreOpenInterest << ","///×ò³Ö²ÖÁ¿
-                << t.OpenPrice << ","///½ñ¿ªÅÌ
-                << t.UpperLimitPrice << ","///ÕÇÍ£°å¼Û
-                << t.LowerLimitPrice << ","///µøÍ£°å¼Û
-                << t.HighestPrice << ","///×î¸ß¼Û
-                << t.LowestPrice << ","///×îµÍ¼Û
-                << t.LastPrice << ","///×îÐÂ¼Û
-                << t.Volume << ","///ÊýÁ¿
-                << t.Turnover << ","///³É½»½ð¶î
-                << t.OpenInterest << ","///³Ö²ÖÁ¿
-                << t.BidPrice1 << ","///ÉêÂò¼ÛÒ»
-                << t.BidVolume1 << ","///ÉêÂòÁ¿Ò»
-                << t.AskPrice1 << ","///ÉêÂô¼ÛÒ»
-                << t.AskVolume1 << ","///ÉêÂôÁ¿Ò»
-                << t.BidPrice2 << ","///ÉêÂò¼Û¶þ
-                << t.BidVolume2 << ","///ÉêÂòÁ¿¶þ
-                << t.AskPrice2 << ","///ÉêÂô¼Û¶þ
-                << t.AskVolume2 << ","///ÉêÂôÁ¿¶þ
-                << t.BidPrice3 << ","///ÉêÂò¼ÛÈý
-                << t.BidVolume3 << ","///ÉêÂòÁ¿Èý
-                << t.AskPrice3 << ","///ÉêÂô¼ÛÈý
-                << t.AskVolume3 << ","///ÉêÂôÁ¿Èý
-                << t.BidPrice4 << ","///ÉêÂò¼ÛËÄ
-                << t.BidVolume4 << ","///ÉêÂòÁ¿ËÄ
-                << t.AskPrice4 << ","///ÉêÂô¼ÛËÄ
-                << t.AskVolume4 << ","///ÉêÂôÁ¿ËÄ
-                << t.BidPrice5 << ","///ÉêÂò¼ÛÎå
-                << t.BidVolume5 << ","///ÉêÂòÁ¿Îå
-                << t.AskPrice5 << ","///ÉêÂô¼ÛÎå
-                << t.AskVolume5///ÉêÂôÁ¿Îå
+            outFile.open(fileName, std::ios::app); // æ–‡ä»¶è¿½åŠ å†™å…¥
+            outFile << t.InstrumentID << ","///äº¤æ˜“æ‰€ä»£ç 
+                << t.ExchangeID << ","///åˆçº¦ä»£ç 
+                << t.TradingDay << ","///äº¤æ˜“æ—¥
+                << t.UpdateTime << ","///æœ€åŽä¿®æ”¹æ—¶é—´
+                << t.UpdateMillisec << ","///æœ€åŽä¿®æ”¹æ¯«ç§’
+                << t.PreSettlementPrice << ","///ä¸Šæ¬¡ç»“ç®—ä»·
+                << t.PreClosePrice << ","///æ˜¨æ”¶ç›˜
+                << t.PreOpenInterest << ","///æ˜¨æŒä»“é‡
+                << t.OpenPrice << ","///ä»Šå¼€ç›˜
+                << t.UpperLimitPrice << ","///æ¶¨åœæ¿ä»·
+                << t.LowerLimitPrice << ","///è·Œåœæ¿ä»·
+                << t.HighestPrice << ","///æœ€é«˜ä»·
+                << t.LowestPrice << ","///æœ€ä½Žä»·
+                << t.LastPrice << ","///æœ€æ–°ä»·
+                << t.Volume << ","///æ•°é‡
+                << t.Turnover << ","///æˆäº¤é‡‘é¢
+                << t.OpenInterest << ","///æŒä»“é‡
+                << t.BidPrice1 << ","///ç”³ä¹°ä»·ä¸€
+                << t.BidVolume1 << ","///ç”³ä¹°é‡ä¸€
+                << t.AskPrice1 << ","///ç”³å–ä»·ä¸€
+                << t.AskVolume1 << ","///ç”³å–é‡ä¸€
+                << t.BidPrice2 << ","///ç”³ä¹°ä»·äºŒ
+                << t.BidVolume2 << ","///ç”³ä¹°é‡äºŒ
+                << t.AskPrice2 << ","///ç”³å–ä»·äºŒ
+                << t.AskVolume2 << ","///ç”³å–é‡äºŒ
+                << t.BidPrice3 << ","///ç”³ä¹°ä»·ä¸‰
+                << t.BidVolume3 << ","///ç”³ä¹°é‡ä¸‰
+                << t.AskPrice3 << ","///ç”³å–ä»·ä¸‰
+                << t.AskVolume3 << ","///ç”³å–é‡ä¸‰
+                << t.BidPrice4 << ","///ç”³ä¹°ä»·å››
+                << t.BidVolume4 << ","///ç”³ä¹°é‡å››
+                << t.AskPrice4 << ","///ç”³å–ä»·å››
+                << t.AskVolume4 << ","///ç”³å–é‡å››
+                << t.BidPrice5 << ","///ç”³ä¹°ä»·äº”
+                << t.BidVolume5 << ","///ç”³ä¹°é‡äº”
+                << t.AskPrice5 << ","///ç”³å–ä»·äº”
+                << t.AskVolume5///ç”³å–é‡äº”
                 << std::endl;
             outFile.close();
         }
